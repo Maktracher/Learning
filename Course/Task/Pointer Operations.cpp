@@ -1,18 +1,16 @@
 #include <iostream>
 #include <ostream>
-#include<stdio.h>
 
 int* findMaxElement(int *arr, int size)
 {
     int *maxElement = arr;
-     for(int i = -1; i < size; i++)
-     {
-         std::cout<<"element: "<<arr[i]<<std::endl;
-         if(arr[i+1] > *maxElement)
-         {
-             maxElement = &arr[i+1];
-         }
-     }
+    for(int i = 1; i < size; i++)
+    {
+        if(arr[i] > *maxElement)
+        {
+            maxElement = &arr[i];
+        }
+    }
     std::cout<<*maxElement<<std::endl;
     return maxElement;
 }
@@ -22,23 +20,42 @@ void changeValue(int *num)
     *num = 100;
 }
 
+void suma(int *arr, int size)
+{
+
+    for(int i = 1; i < size; i++)
+    {
+        *arr += arr[i];
+    }
+    std::cout<<std::endl;
+    std::cout<<"suma"<<std::endl;
+    std::cout<<*arr<<std::endl;
+}
+
 
 int main()
 {
 
-    int arr[10];
-    for(int i = 0; i < 10; i++)
+    int size = 0;
+    std::cout<<"Enter the size of the array: ";
+    std::cin >> size;
+
+    int arr[size] = {};
+    for(int i = 0; i < size; i++)
     {
-        arr[i] = rand() % 100;
-        std::cout << arr[i] << " ";
+        std::cout << "Enter number: " << " ";
+        std::cin >> arr[i];
     }
 
-    int *max = findMaxElement(arr, 10);
+    int *max = findMaxElement(arr, size);
     changeValue(max);
 
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < size; i++)
     {
         std::cout << arr[i] << " ";
     }
+
+    suma(arr, size);
+
     return 0;
 }
